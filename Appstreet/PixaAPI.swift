@@ -17,8 +17,9 @@ struct PixaAPI {
     private static let key = "17577339-d40adde472bf1bd9e8a4ad81e"
 
     static var searchImagesURL: URL {
-        return pixaURL(endpoint: .searchImages, parameters: ["q": "computer", "image_type": "photo"])
+        return pixaURL(endpoint: .searchImages, parameters: ["key": key, "q": "computer", "image_type": "photo"])
     }
+
     private static func pixaURL(endpoint: Endpoint, parameters: [String: String]?) -> URL {
 //        return URL(string: "")
         var components = URLComponents(string: baseURLString)!

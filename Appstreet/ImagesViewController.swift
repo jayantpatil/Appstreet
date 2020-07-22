@@ -11,11 +11,11 @@ import UIKit
 class ImagesViewController: UIViewController {
 
     @IBOutlet var imageView: UIImageView!
+    var store: ImageStore!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        store.getImages()
     }
-
-
 }
 
