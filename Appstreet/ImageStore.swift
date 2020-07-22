@@ -30,4 +30,12 @@ class ImageStore {
         }
         task.resume()
     }
+
+    private func processImagesRequest(data: Data?, error: Error?) -> Result<[Image], Error> {
+        guard let data = data else {
+            return .failure(error!)
+        }
+
+        return PixaAPI.extractImages(fromJSON: data)
+    }
 }

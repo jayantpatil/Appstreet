@@ -29,6 +29,16 @@ struct PixaAPI {
         return pixaURL(endpoint: .searchImages, parameters: ["key": key, "q": "computer", "image_type": "photo"])
     }
 
+    static func extractImages(fromJSON data: Data) -> Result<[Image], Error> {
+        do {
+            let decoder = JSONDecoder()
+            let response = try decoder.decode(PixaResponse.self, from: data)
+            return .success(response.images)
+        } catch {
+            return .failure(error)
+        }
+    }
+
     private static func pixaURL(endpoint: Endpoint, parameters: [String: String]?) -> URL {
         var components = URLComponents(string: baseURLString)!
         var queryItems = [URLQueryItem]()
