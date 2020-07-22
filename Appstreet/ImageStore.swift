@@ -38,7 +38,9 @@ class ImageStore {
         let request = URLRequest(url: imageURL)
         let task = session.dataTask(with: request) { (data, _, error) in
             let result = self.processImageRequest(data: data, error: error)
-            completion(result)
+            OperationQueue.main.addOperation {
+                completion(result)
+            }
         }
         task.resume()
     }
