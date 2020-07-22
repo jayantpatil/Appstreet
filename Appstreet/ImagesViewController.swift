@@ -15,7 +15,15 @@ class ImagesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        store.getImages()
+        store.getImages { response in
+            switch response {
+            case let .success(images):
+                print("Received \(images.count) images")
+
+            case let .failure(error):
+                print("Error while fetching photos - \(error)")
+            }
+        }
     }
 }
 

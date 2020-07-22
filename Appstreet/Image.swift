@@ -10,10 +10,9 @@ import Foundation
 
 class Image: Codable {
     // Actual response object contains many other parameters. Here processing only which are necessary.
-    let id: String
-    let previewURL: URL
-    let webformatURL: URL
-    let largeImageURL: URL
-    let fullHDURL: URL
-    let imageURL: URL
+    let id: Int
+    let previewURL: URL?
+    let webformatURL: URL?
+    let largeImageURL: URL?
+    let imageURL: URL?
 }

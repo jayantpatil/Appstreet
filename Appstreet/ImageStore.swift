@@ -14,19 +14,12 @@ class ImageStore {
         return URLSession(configuration: configuration)
     }()
 
-    func getImages() {
+    func getImages(completion: @escaping (Result<[Image], Error>) -> Void) {
         let url = PixaAPI.searchImagesURL
         let request = URLRequest(url: url)
         let task = session.dataTask(with: request) { (data, response, error) in
-            if let jsonData = data {
-                if let jsonString = String(data: jsonData, encoding: .utf8) {
-                    print(jsonString)
-                }
-            } else if let requestError = error {
-                print("Error Occured while getting images: \(requestError)")
-            } else {
-                print("Unknown error")
-            }
+            let result = self.processImagesRequest(data: data, error: error)
+            completion(result)
         }
         task.resume()
     }
